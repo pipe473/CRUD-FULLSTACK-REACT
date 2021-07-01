@@ -85,3 +85,23 @@ app.post('/employees', (req, res) =>{
         }
     });
 });
+
+// Update an employee by id from DB
+
+app.put('/employees', (req, res) =>{
+    let emParams = [
+        req.body.Name,
+        req.body.EmpCode,
+        req.body.Salary,
+        req.body.EmpID,
+    ];
+    let sql = "UPDATE employee SET Name = ?, EmpCode = ?, Salary = ? WHERE  EmpID = ?";
+    mysqlConnection.query(sql,emParams, (err, rows, fields) =>{
+        if(!err){
+           res.send("Updated successfully!!")
+        }        
+        else{
+            console.log(err);       
+        }
+    });
+});
