@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Axios from "axios";
 
 function App() {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [emcode, setEmcode] = useState("");
   const [salary, setSalary] = useState("");
+  const [showAll, setShowAll] = useState([]);
+
+  useEffect(() => { 
+    let url2 = "http://localhost:6060";  
+    Axios.get(`${url2}/employees`).then(result =>{
+      // console.log(result.data);     
+      setShowAll(result.data);
+    })
+  }, []);
+
 
   const buttonClicked = () => {
-    let url = "http://localhost:6060";
-    
+    let url = "http://localhost:6060";    
     Axios.post(`${url}/employees`, {
       EmpID: id,
       Name: name,
@@ -21,6 +30,7 @@ function App() {
       console.log('Success!!!');      
     })
   };
+
 
   return (
     <div className="container">
@@ -78,6 +88,16 @@ function App() {
             <button className="btn btn-primary" onClick={buttonClicked}>
               Submit
             </button>
+          </div>
+          <div className="show-data col-sm">
+            {showAll.map((val) => {
+              return (
+              <h1>
+                ID: {val.EmpID} | Name: {val.Name}
+                </h1>
+                );
+            })}
+            
           </div>
         </div>
       </div>

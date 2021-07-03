@@ -36,8 +36,7 @@ app.get("/employees", (req, res) => {
   let mySql = "SELECT * FROM Employee";
   mysqlConnection.query(
       mySql,
-      employResults,
-       (err, response) => {
+      employResults, (err, response) => {
     if (!err) 
       res.send(response);
      else 
