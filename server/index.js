@@ -20,7 +20,7 @@ let mysqlConnection = mysql.createConnection({
 });
 
 mysqlConnection.connect((err) => {
-  if (!err) console.log("DB COnnection succeded...");
+  if (!err) console.log("DB Connection succeded...");
   else
     console.log(
       "DB connection failed! \n Error:" + JSON.stringify(err, undefined, 2)
@@ -38,11 +38,10 @@ app.get("/employees", (req, res) => {
       mySql,
       employResults,
        (err, response) => {
-    if (!err) {
+    if (!err) 
       res.send(response);
-    } else {
-      console.log(err);
-    }
+     else 
+      console.log(err);    
   });
 });
 
