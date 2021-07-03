@@ -1,0 +1,21 @@
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.title{
+  text-align: center;
+}
+.form{
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.submit-button{
+  margin: 30px 0 0 0;
+  text-align: center;
+}
+
+button{
+  width: 50%;
+}
